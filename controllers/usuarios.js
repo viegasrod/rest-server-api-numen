@@ -1,3 +1,4 @@
+const Usuario = require("../models/usuario");
 
 
 const usuariosGet = (req, res) => {
@@ -12,15 +13,19 @@ const usuariosGet = (req, res) => {
 
 }
 
-const usuariosPost = (req, res) => {
+const usuariosPost = async (req, res) => {
 
-    const { nombre, edad } = req.body
+    const body = req.body
+
+    const usuario = new Usuario(body)
+
+    await usuario.save()
 
     res.status(200).json({
 
         msg: 'POST USUARIOS',
-        nombre,
-        edad
+        usuario
+      
     })
 
 }
