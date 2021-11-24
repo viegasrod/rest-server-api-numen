@@ -39,7 +39,7 @@ class Server {
 
     routes() {
         this.app.use( this.usuariosPath, require('../routes/usuarios'));
-        this.app.use( this.productoPath, require('../routes/productos'));
+        //this.app.use( this.productoPath, require('../routes/productos'));
     }
 
     listen() {
