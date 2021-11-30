@@ -4,6 +4,8 @@ const { usuariosGet,usuariosPost,usuariosPut,usuariosDelete } = require('../cont
 const { check } = require('express-validator');
 const { validarCampos } = require('../helpers/validar-campos');
 const { emailExiste } = require('../middlewares/existeEmail');
+const { validarJWT } = require('../middlewares/validar-jwt');
+const { esAdminRole } = require('../middlewares/validar-roles');
 
 
 const router = Router()
@@ -22,7 +24,10 @@ router.post('/',[
 
 router.put('/:id', usuariosPut)
 
-router.delete('/:id', usuariosDelete)
+router.delete('/:id',[
+    validarJWT,
+    esAdminRole
+], usuariosDelete)
 
 
 module.exports = router
