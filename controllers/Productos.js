@@ -11,7 +11,7 @@ const productosGet = async (req, res) => {
     const paramatros = { estado: true }
 
 
-    const [total, usuarios ] = await Promise.all([
+    const [total, productos ] = await Promise.all([
         Producto.countDocuments(paramatros),
         Producto.find(paramatros)
         .skip(Number (desde))
